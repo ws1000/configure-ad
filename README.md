@@ -39,7 +39,11 @@ This tutorial outlines the prerequisites and installation of the open-source hel
 <img src="https://i.imgur.com/sY5ZGl6.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+
+- Login to DC-1 and install Active Directory Domain Services
+- Promote as a DC: Setup a new forest as mydomain.com (can be anything, just remember what it is)
+- Restart and then log back into DC-1 as user: mydomain.com\labuser
+
 </p>
 <br />
 
@@ -57,7 +61,15 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 <img src="https://i.imgur.com/LPtQm9r.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+
+- In Active Directory Users and Computers (ADUC), create an Organizational Unit (OU) called “_EMPLOYEES”
+- Create a new OU named “_ADMINS”
+- Create a new employee named “Jane Doe” (same password) with the username of “jane_admin”
+- Add jane_admin to the “Domain Admins” Security Group
+- Log out/close the Remote Desktop connection to DC-1 and log back in as “mydomain.com\jane_admin”
+- User jane_admin as your admin account from now on
+
+
 </p>
 <br />
 
@@ -76,7 +88,12 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 </p>
 <p>
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+- From the Azure Portal, set Client-1’s DNS settings to the DC’s Private IP address
+- From the Azure Portal, restart Client-1
+- Login to Client-1 (Remote Desktop) as the original local admin (labuser) and join it to the domain (computer will restart)
+- Login to the Domain Controller (Remote Desktop) and verify Client-1 shows up in Active Directory Users and Computers (ADUC) inside the “Computers” container on the root of the domain
+
+
 </p>
 <br />
 
@@ -91,7 +108,13 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 <img src="" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+
+- Log into Client-1 as mydomain.com\jane_admin and open system properties
+- Click “Remote Desktop”
+- Allow “domain users” access to remote desktop
+- You can now log into Client-1 as a normal, non-administrative user now
+
+
 </p>
 <br />
 
@@ -101,6 +124,10 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 <img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+
+- Login to DC-1 as jane_admin
+- Open PowerShell_ise as an administrator
+- Create a new File and paste the contents of the script into it 
+
 </p>
 <br />
